@@ -280,6 +280,9 @@
     section { padding: 60px 5%; }
     .products-grid { grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); }
     .footer-bottom { flex-direction: column; text-align: center; }
+    .director-title-row { flex-wrap: wrap; gap: 10px; }
+    .bcard-scene { gap: 32px; }
+    .bcard-front-body { padding: 20px; }
   }
 
   /* ===== DIRECTOR CARD ===== */
@@ -294,24 +297,17 @@
 
   /* The actual business card */
   .bcard-flip-container {
-    perspective: 1200px;
-    width: 100%; max-width: 480px; aspect-ratio: 1.78;
-    margin: 0 auto; cursor: pointer;
+    width: 100%; max-width: 480px;
+    margin: 0 auto;
   }
   .bcard-flipper {
-    width: 100%; height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.75s cubic-bezier(0.4,0.2,0.2,1);
-    position: relative;
+    width: 100%;
     filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
   }
-  .bcard-flip-container.flipped .bcard-flipper { transform: rotateY(180deg); }
-  .bcard-front, .bcard-back {
-    position: absolute; inset: 0;
-    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  .bcard-front {
+    position: relative;
     border-radius: 18px; overflow: hidden;
   }
-  .bcard-back { transform: rotateY(180deg); }
 
   /* Front face */
   .bcard-front {
@@ -369,53 +365,9 @@
     font-size: clamp(1.2rem, 3vw, 1.6rem);
     letter-spacing: 4px; align-self: flex-end;
     background: linear-gradient(135deg, rgba(255,92,0,0.6), rgba(255,214,0,0.4));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     position: relative; z-index: 1;
   }
-
-  /* Back face */
-  .bcard-back {
-    background: linear-gradient(145deg, #FF5C00 0%, #ff8c00 40%, #FFD600 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 24px; gap: 8px; position: relative; overflow: hidden;
-  }
-  .bcard-back::before {
-    content: ""; position: absolute; width: 300px; height: 300px; border-radius: 50%;
-    background: rgba(255,255,255,0.08); top: -100px; right: -80px;
-  }
-  .bcard-back::after {
-    content: ""; position: absolute; width: 200px; height: 200px; border-radius: 50%;
-    background: rgba(0,0,0,0.06); bottom: -60px; left: -50px;
-  }
-  .bcard-back-brand {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 6px;
-    color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.2); position: relative; z-index: 1;
-  }
-  .bcard-back-sub {
-    font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(255,255,255,0.8); position: relative; z-index: 1;
-  }
-  .bcard-back-tagline {
-    font-size: 0.8rem; font-style: italic; color: rgba(255,255,255,0.7);
-    margin-top: 4px; position: relative; z-index: 1;
-  }
-  .bcard-back-url {
-    margin-top: 10px; font-size: 0.7rem; font-weight: 700;
-    color: rgba(255,255,255,0.85); letter-spacing: 1px;
-    background: rgba(0,0,0,0.15); padding: 5px 14px; border-radius: 50px;
-    position: relative; z-index: 1;
-  }
-  .bcard-iso {
-    margin-top: 6px; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px;
-    color: rgba(255,255,255,0.6); position: relative; z-index: 1;
-  }
-
-  .bcard-hint {
-    text-align: center; font-size: 0.75rem; color: rgba(248,248,248,0.3);
-    margin-top: 14px; letter-spacing: 0.5px;
-  }
-  .bcard-hint span { color: var(--orange); }
 
   /* Director info panel */
   .director-info { display: flex; flex-direction: column; gap: 20px; }
@@ -870,7 +822,7 @@
 
       <!-- Flip Card -->
       <div class="reveal">
-        <div class="bcard-flip-container" id="bcardContainer" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="bcard-flip-container" id="bcardContainer">
           <div class="bcard-flipper">
 
             <!-- FRONT -->
@@ -879,12 +831,12 @@
               <div class="bcard-front-body">
                 <div class="bcard-left-bar"></div>
                 <div class="bcard-front-content">
-                  <div class="bcard-name">Raj Agarwal</div>
+                  <div class="bcard-name">Sparsh Agarwal</div>
                   <div class="bcard-title">Director</div>
                   <div class="bcard-divider"></div>
                   <div class="bcard-detail">
                     <div class="bcard-detail-icon">📞</div>
-                    <div class="bcard-detail-text"><a href="tel:+919830161908">+91 98301 61908</a></div>
+                    <div class="bcard-detail-text"><a href="tel:+919875402840">+91 98754 02840</a></div>
                   </div>
                   <div class="bcard-detail">
                     <div class="bcard-detail-icon">✉</div>
@@ -911,32 +863,22 @@
               </div>
             </div>
 
-            <!-- BACK -->
-            <div class="bcard-back">
-              <div class="bcard-back-brand">SPARSH</div>
-              <div class="bcard-back-sub">Gem Plast Pvt Ltd</div>
-              <div class="bcard-back-tagline">Plastic Jo Dil ke Kareeb</div>
-              <div class="bcard-back-url">www.sparshplastics.com</div>
-              <div class="bcard-iso">ISO 9001:2015 Certified</div>
-            </div>
-
           </div>
         </div>
-        <p class="bcard-hint">Click the card to <span>flip it</span> ↩</p>
       </div>
 
       <!-- Director Info -->
       <div class="director-info reveal">
         <div>
-          <div class="director-heading">Raj <span class="accent">Agarwal</span><br><span style="font-size:0.5em;color:rgba(248,248,248,0.5);letter-spacing:3px;font-family:Outfit,sans-serif;font-weight:600">DIRECTOR, SPARSH GEM PLAST PVT LTD</span></div>
-          <p class="director-bio" style="margin-top:12px">With over 25 years at the helm of one of Kolkata's foremost plastic manufacturing enterprises, Raj Agarwal has driven Sparsh Gem Plast Pvt Ltd (previously R.N. Trading Company) from a regional distributor to a nationally recognised manufacturer with international reach and ISO 9001:2015 certification.</p>
+          <div class="director-heading">Sparsh <span class="accent">Agarwal</span><br><span style="font-size:0.5em;color:rgba(248,248,248,0.5);letter-spacing:3px;font-family:Outfit,sans-serif;font-weight:600">DIRECTOR, SPARSH GEM PLAST PVT LTD</span></div>
+          <p class="director-bio" style="margin-top:12px">With over 25 years at the helm of one of Kolkata's foremost plastic manufacturing enterprises, Sparsh Agarwal has driven Sparsh Gem Plast Pvt Ltd (previously R.N. Trading Company) from a regional distributor to a nationally recognised manufacturer with international reach and ISO 9001:2015 certification.</p>
         </div>
         <div class="director-contacts">
           <div class="dir-contact-row">
             <div class="dir-contact-icon orange">📞</div>
             <div>
               <div class="dir-contact-label">Direct Line</div>
-              <div class="dir-contact-value"><a href="tel:+919830161908">+91 98301 61908</a></div>
+              <div class="dir-contact-value"><a href="tel:+919875402840">+91 98754 02840</a></div>
             </div>
           </div>
           <div class="dir-contact-row">
